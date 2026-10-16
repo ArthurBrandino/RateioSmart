@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class GerenciadorMorador{
 
         private Scanner leitor = new Scanner(System.in);
-        private List listaMoradores = new ArrayList<>();
+        private List<Morador> listaMoradores = new ArrayList<>();
         private CasaService casaService = new CasaService();
 
 
@@ -77,12 +77,8 @@ public class GerenciadorMorador{
                         int pessoas = leitor.nextInt();
                         leitor.nextLine();
 
-                        System.out.print("Digite a leitura atual do relógio de luz: ");
-                        double leituraLuz = leitor.nextDouble();
-                        leitor.nextLine();
 
-
-                        Morador novoMorador = new Morador(casaEscolhida, nome, pessoas, leituraLuz);
+                        Morador novoMorador = new Morador(casaEscolhida, nome, pessoas);
                         listaMoradores.add(novoMorador);
                         System.out.println("Morador cadastrado com sucesso na casa: " + casaEscolhida + "!");
 
@@ -146,8 +142,9 @@ public class GerenciadorMorador{
 
                                         case 3: System.out.println("Você escolheu Atualizar a Quantidade de Pessoas do Morador, pressione <ENTER> para continuar...");
                                                 leitor.nextLine();
-                                                int novasPessoas = leitor.nextLine();
-                                                moradorEscolhido.setPessoas(novasPessoas);
+                                                int novasPessoas = leitor.nextInt();
+                                                leitor.nextLine();
+                                                moradorEscolhido.setNumeroPessoas(novasPessoas);
                                                 System.out.println("Número de pessoas atualizado com sucesso!");
                                                 break;
 
@@ -171,8 +168,6 @@ public class GerenciadorMorador{
                 }while(!voltar);
         }
 
-        // FALTA ARRUMAR O DELETE, REESTRUTURAR O MODEL CASA PARA LEITURA DE LUZ SER VINCULADA A CASA E NÃO AO MORADOR!
-
         public void delete(){
                 boolean voltar = false;
 
@@ -194,11 +189,12 @@ public class GerenciadorMorador{
 
                         System.out.println();
                         System.out.println("**********************************");
-                        System.out.println("*  1- Deletar                     *");
-                        System.out.println("*  0- Cancelar                    *");
+                        System.out.println("*  1- Deletar                    *");
+                        System.out.println("*  0- Cancelar                   *");
                         System.out.println("**********************************");
                         System.out.println("Escolha uma opção: ");
                         int option = leitor.nextInt();
+                        leitor.nextLine();
 
                         switch(option){
                                 case 1: System.out.print("Tem Certeza que irá DELETAR este morador? (S/N): ");
@@ -216,6 +212,9 @@ public class GerenciadorMorador{
                                 default: System.out.println("Opção Inválida"); break;
                         }
 
+                        if (listaMoradores.isEmpty()) break; //Caso Não Tenha mais Moradores para serem Deletados
+                        
+
                         System.out.print("Deseja Deletar outro morador? (S/N): ");
                         String resposta = leitor.nextLine().trim();
 
@@ -226,7 +225,7 @@ public class GerenciadorMorador{
 
 
 
-        // Funções  Auxiliares
+        //-------------------------- Funções Auxiliares --------------------------
         public void identificarMorador(Morador m){
                 System.out.println( "Casa: " + m.getCasa() + 
                                 " | Nome: " + m.getNome() + 
@@ -240,7 +239,7 @@ public class GerenciadorMorador{
                         System.out.println("⚠ Nenhum morador cadastrado!");
                         System.out.println("Pressione <ENTER> para continuar...");
                         leitor.nextLine();
-                        return;
+                        return null;
                 }
 
                 System.out.println("Moradores Existentes:");
@@ -275,11 +274,13 @@ public class GerenciadorMorador{
 
 
         public Casas mostrarCasasDisponiveis() {
+                List<Casas> casasDisponiveis = casaService.getCasasDisponiveis(listaMoradores);
+                
                 if (casasDisponiveis.isEmpty()) {
                         System.out.println("⚠ Todas as casas já estão ocupadas!");
                         System.out.println("Pressione <ENTER> para continuar...");
                         leitor.nextLine();
-                        return;
+                        return null;
                 }
 
                 System.out.println("Casas Disponíveis:");

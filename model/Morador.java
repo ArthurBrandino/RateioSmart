@@ -1,24 +1,25 @@
 package model;
 
 public class Morador{
-    public static class Morador {
-        private Casas casa;
-        private String nome;
-        private int numeroPessoas;
-        private double leituraAnteriorLuz;
+    private String casa;
+    private String nome;
+    private int numeroPessoas;
 
-        public Morador(Casas casa, String nome, int numeroPessoas, double leituraAnteriorLuz){
-            this.casa = casa;
-            this.nome = nome;
-            this.numeroPessoas = numeroPessoas;
-            this.leituraAnteriorLuz = leituraAnteriorLuz;
-        }
+    public Morador() {}
 
-        public Casas getCasa() { return casa; }
-        public String getNome() { return nome; }
-        public int getNumeroPessoas() { return numeroPessoas; }
-        public double getLeituraAnteriorLuz() { return leituraAnteriorLuz; }
-        public void setLeituraAnteriorLuz(double leitura) { this.leituraAnteriorLuz = leitura; }
-
+    public Morador(String casa, String nome, int numeroPessoas, double leituraAnteriorLuz){
+        this.casa = casa;
+        this.nome = nome;
+        this.numeroPessoas = numeroPessoas;
     }
+
+    public String getCasa() { return casa; }
+    public void setCasa(String casa) { this.casa = casa; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public int getNumeroPessoas() { return numeroPessoas; }
+    public void setNumeroPessoas(int numeroPessoas) { this.numeroPessoas = numeroPessoas; }
+    
 }
