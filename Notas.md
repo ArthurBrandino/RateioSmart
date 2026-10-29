@@ -14,6 +14,23 @@
 
 ---
 
+## ⚙️ O que foi feito hoje 29/10:
+- **Correções de Validação e Regras de Negócio:**
+  - Ajuste no cadastro para garantir que o número de pessoas seja estritamente maior do que 1.
+
+- **Correção de Bugs nos Fluxos de Atualização (`CRUD`):**
+  - Correção do bug de salto de linha e travamento ao teclar `ENTER` nos campos de atualização de *Pessoas* e *Nome*.
+
+- **Aprimoramento de Interface e Experiência (CLI):**
+  - Implementação da função utilitária `limparTela()` utilizando sequências de escape ANSI para limpar a tela de forma limpa e profissional ao transitar entre menus.
+  - Configuração do ambiente para permitir a execução direta do programa no PowerShell.
+  - Implementação do método `verificarListaVazia()` para centralizar e padronizar as validações de listas vazias pelo sistema.
+
+- **Qualidade de Código:**
+  - Documentação e comentários adicionados ao longo do código para facilitar a manutenção.
+
+
+
 ## 🎯 O que preciso fazer na próxima sessão:
 
 ### 1. Persistência de Dados (Arquivo JSON)
@@ -38,3 +55,7 @@
 4. [ ] Desenvolver o serviço de cálculo final do rateio (Água por pessoas + Luz por consumo do imóvel).
 5. [ ] Configurar e validar o fluxo final de testes no `Main.java`.
 6. [ ] Corrigir Bugs
+
+
+## Correções :
+1. Lista de Moradores tem q ser listada em ordem crescente
